@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import 'size.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -25,27 +27,27 @@ class _MyHomePageState extends State<MyHomePage> {
   bool visible = false;
   @override
   Widget build(BuildContext context) {
+    Size size = new Size(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 3,
+              width: size.screenWidth(),
+              height: size.screenHeight() / 3,
               color: maroon,
               alignment: Alignment.bottomCenter,
-              padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).size.height * 0.04),
+              padding: EdgeInsets.only(bottom: size.height(40)),
               child: CircleAvatar(
                 backgroundColor: Colors.white,
-                radius: MediaQuery.of(context).size.width / 7,
+                radius: size.width(50),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(size.height(8)),
                   child: Text(
                     "Logo Here",
                     style: TextStyle(
-                      fontSize: 25,
+                      fontSize: size.font(25),
                       fontWeight: FontWeight.bold,
                       color: maroon,
                     ),
@@ -53,23 +55,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               )),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 2 / 4,
-            color: Colors.white,
+          Expanded(
             child: ListView(
               children: [
-                SizedBox(height: MediaQuery.of(context).size.height * 0.035),
+                SizedBox(height: size.height(50)),
                 TextFormField(
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.07),
+                    contentPadding: EdgeInsets.only(left: size.width(25)),
                     labelText: "Email",
-                    labelStyle: TextStyle(color: maroon),
+                    labelStyle:
+                        TextStyle(color: maroon, fontSize: size.font(18)),
                     hintText: "example@gmail.com",
                     suffixIcon: Padding(
-                      padding: EdgeInsets.only(
-                          right: MediaQuery.of(context).size.width * 0.07),
+                      padding: EdgeInsets.only(right: size.width(25)),
                       child: Icon(Icons.mail, color: maroon),
                     ),
                   ),
@@ -81,17 +79,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   keyboardType: TextInputType.emailAddress,
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                SizedBox(height: size.height(25)),
                 TextFormField(
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.07),
+                    contentPadding: EdgeInsets.only(left: size.width(25)),
                     labelText: "password",
-                    labelStyle: TextStyle(color: maroon),
+                    labelStyle:
+                        TextStyle(color: maroon, fontSize: size.font(18)),
                     hintText: "Enter your passowrd",
                     suffixIcon: Padding(
-                      padding: EdgeInsets.only(
-                          right: MediaQuery.of(context).size.width * 0.07),
+                      padding: EdgeInsets.only(right: size.width(25)),
                       child: IconButton(
                         icon: Icon(
                             visible ? Icons.visibility : Icons.visibility_off,
@@ -112,80 +109,87 @@ class _MyHomePageState extends State<MyHomePage> {
                   obscureText: visible,
                   obscuringCharacter: "*",
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                SizedBox(height: size.height(25)),
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: MediaQuery.of(context).size.width * 0.08),
+                  padding: EdgeInsets.symmetric(horizontal: size.width(30)),
                   child: RaisedButton(
                     color: maroon,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                          MediaQuery.of(context).size.height * 0.04),
+                      borderRadius: BorderRadius.circular(size.height(30)),
                     ),
                     onPressed: () {},
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          vertical: MediaQuery.of(context).size.height * 0.02),
-                      child: Text("Sign In",
-                          style: TextStyle(color: Colors.white, fontSize: 20)),
+                    child: Container(
+                      height: size.height(60),
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Sign In",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: size.font(20),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                SizedBox(height: size.height(15)),
                 Center(
                   child: InkWell(
                     child: Text(
                       "Forgte passowrd?",
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(
+                          color: Colors.black, fontSize: size.font(13)),
                     ),
                     onTap: () {},
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                SizedBox(height: size.height(15)),
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: MediaQuery.of(context).size.width * 0.08),
+                  padding: EdgeInsets.symmetric(horizontal: size.width(30)),
                   child: RaisedButton(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(color: maroon, width: 2),
-                      borderRadius: BorderRadius.circular(
-                          MediaQuery.of(context).size.height * 0.04),
+                      side: BorderSide(color: maroon, width: size.width(2)),
+                      borderRadius: BorderRadius.circular(size.width(30)),
                     ),
                     onPressed: () {},
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          vertical: MediaQuery.of(context).size.height * 0.02),
+                    child: Container(
+                      height: size.height(60),
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SvgPicture.asset(
                             "asset/facebook.svg",
                             color: maroon,
-                            height: MediaQuery.of(context).size.width * 0.07,
-                            width: MediaQuery.of(context).size.width * 0.07,
+                            height: size.height(35),
+                            width: size.height(35),
                           ),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.05),
+                          SizedBox(width: size.width(20)),
                           Text("Sign In with Facebook",
-                              style: TextStyle(color: maroon, fontSize: 18)),
+                              style: TextStyle(
+                                  color: maroon, fontSize: size.font(18))),
                         ],
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                SizedBox(height: size.height(15)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   // mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text("Don't have an account? "),
+                    Text("Don't have an account? ",
+                        style: TextStyle(fontSize: size.font(13))),
                     InkWell(
-                      child: Text("Sign Up",
-                          style: TextStyle(
-                              color: maroon,
-                              decoration: TextDecoration.underline,
-                              fontWeight: FontWeight.bold)),
+                      child: Text(
+                        "Sign Up",
+                        style: TextStyle(
+                          color: maroon,
+                          decoration: TextDecoration.underline,
+                          fontWeight: FontWeight.bold,
+                          fontSize: size.font(13),
+                        ),
+                      ),
                     )
                   ],
                 )
